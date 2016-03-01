@@ -17,7 +17,7 @@ import javax.swing.ImageIcon;
 public class Snake {
 	//the head of the list is the tail of the snake
 	private LinkedList<Integer> snakeCoords = new LinkedList<>();
-	private int lastDirection = LEFT;
+	protected int lastDirection = LEFT;
 	private String[] snakeImageFiles = {
 		"images/blueish_head.png", //bity end
 		"images/blueish.png"	   //body
@@ -31,9 +31,15 @@ public class Snake {
 	public static final int NONE = -1;	
 	private static final int X_EXTRACTION = getXExtractor();
 	private static final int Y_EXTRACTION = getYExtractor();
+	public static final int SUGGESTED_SNAKE_LENGTH = 5;
 	
 	public Snake(int x, int y){
-		this(x, y, 3);
+		this(x, y, SUGGESTED_SNAKE_LENGTH);
+	}
+	
+	public Snake(int x, int y, int length, int direction){
+		this(x, y, length);
+		this.lastDirection = direction;
 	}
 	
 	//merging coords was the stupidest idea

@@ -87,21 +87,41 @@ public class GUI extends JPanel implements ActionListener{
 
 	
 	public void actionPerformed(ActionEvent e) {
-		
 		repaint();  
 	}
 
-	public void setMainComponents(){  //put this public to use for applet
+	public void setMainComponents(){
 		int height = 50;
 		int width = 50;		
-		Arena.setBounds(height, width);
-		snakes = new Snakes();
-
 		this.setPreferredSize(new Dimension(height*10, width*10));
 		
-		//add snakes
-		for(int index=0; index<60; index++){
-			snakes.addSnake(new AI02(6));
+		Arena.setBounds(height, width);
+		snakes = new Snakes();
+		
+		//I screwed up someplace on the controls.  Took fast fix.  
+		//Reversed up and down in constructor superJay and otherHuman.
+		Player superJay = new Player(2, 2, Snake.RIGHT,
+				KeyEvent.VK_DOWN, KeyEvent.VK_UP, 
+				KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT);
+		superJay.setImageFiles(new String[]{
+				"images/yellowish_bity.png", "images/yellowish.png"});
+		superJay.setImages();
+		addKeyListener(superJay.setControls());
+		snakes.addSnake(superJay);
+		
+		Player otherHuman = new Player(
+				Arena.getXBounds()-2, Arena.getYBounds()-2, Snake.LEFT,
+				KeyEvent.VK_S, KeyEvent.VK_W, 
+				KeyEvent.VK_A, KeyEvent.VK_D);
+		otherHuman.setImageFiles(new String[]{
+				"images/reddish_head.png", "images/reddish.png"});
+		otherHuman.setImages();
+		addKeyListener(otherHuman.setControls());
+		snakes.addSnake(otherHuman);
+
+		//add computer snakes
+		for(int index=0; index<10; index++){
+			snakes.addSnake(new AI02(Snake.SUGGESTED_SNAKE_LENGTH));
 		}
 
 		//set up images
@@ -127,22 +147,5 @@ public class GUI extends JPanel implements ActionListener{
 //		toReturn.pack();
 		
 		return toReturn;
-	}
-	
-	
-	private KeyAdapter setPacmanControls(){
-
-		return new KeyAdapter(){
-			public void keyPressed(KeyEvent e) {
-				int key = e.getKeyCode();
-				
-				if (key == KeyEvent.VK_LEFT) {
-				} else if (key == KeyEvent.VK_RIGHT) {
-				}else if (key == KeyEvent.VK_UP) {
-				} else if (key == KeyEvent.VK_DOWN) {
-				} else if(key == KeyEvent.VK_J){
-				}
-			}
-		};	
 	}
 }

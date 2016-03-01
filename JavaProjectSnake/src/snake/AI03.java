@@ -16,7 +16,7 @@ public class AI03 extends AI02{
 	Snake attack = null;
 	int range = 10;
 	
-	
+/*	
 	public AI03(int x, int y){
 		super(x, y, 3);
 	}
@@ -84,5 +84,5 @@ public class AI03 extends AI02{
 		
 		
 	}
-
+*/
 }

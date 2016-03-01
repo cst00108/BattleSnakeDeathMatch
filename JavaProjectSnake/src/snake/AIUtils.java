@@ -16,6 +16,21 @@ import java.util.Random;
 public class AIUtils {
 	private static Random random = new Random();
 	
+	//returns a random direction for the snake to travel in
+	public static int getRandomDirection(){
+		int randomDirection = random.nextInt(4);
+		
+		if(randomDirection == 0){
+			return Snake.UP;
+		} else if(randomDirection == 1){
+			return Snake.DOWN;
+		} else if(randomDirection == 2){
+			return Snake.LEFT;
+		} 
+
+		return Snake.RIGHT;
+	}
+	
 	public static int getRandomish(int bounds){
 		return random.nextInt(bounds);
 	}
@@ -100,7 +115,8 @@ public class AIUtils {
 	}
 
 
-	public static int getDirection(int killerCoords, int mealCoords){
+	//couldn't wait.  It's like a kid on Xmas.  Working on human players.
+//	public static int getDirection(int killerCoords, int mealCoords){
 			/*int killerCoordsX = Snake.getX(killerCoords);
 			int killerCoordsY = Snake.getY(killerCoords);
 
@@ -109,7 +125,7 @@ public class AIUtils {
 			*/
 		
 		//figure out the longest distance getting to the snakes destination
-		int position = this.getKillingEndCoords().intValue();
+/*		int position = this.getKillingEndCoords().intValue();
 
 		int x = Snake.getX(position)
 				- Snake.getX(randomLocation);
@@ -127,7 +143,7 @@ public class AIUtils {
 
 		return hopefullDirection; //maybe not:  AIUtils.getDirection(this, hopefullDirection);
 	}
-
+*/
 	
 	//get middle of snake
 	public static int getMiddle(Snake snake){
